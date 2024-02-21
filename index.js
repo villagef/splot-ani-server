@@ -4,7 +4,7 @@ const { gql } = require("apollo-server-express");
 const { ApolloServer } = require("apollo-server-express");
 const dotenv = require("dotenv");
 
-const db = dotenv.config().parsed.MONGODB_URI || "";
+const db = process.env.MONGODB_URI || dotenv.config().parsed.MONGODB_URI;
 
 mongoose.connect(db, {
   useNewUrlParser: true,
