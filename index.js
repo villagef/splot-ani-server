@@ -3,6 +3,7 @@ const express = require("express");
 const { gql } = require("apollo-server-express");
 const { ApolloServer } = require("apollo-server-express");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 const db = process.env.MONGODB_URI || dotenv.config().parsed.MONGODB_URI;
 
@@ -104,6 +105,7 @@ const resolvers = {
 };
 
 const app = express();
+app.use(cors());
 const server = new ApolloServer({ typeDefs, resolvers });
 
 async function startApolloServer() {
